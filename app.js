@@ -75,11 +75,10 @@
     const ob = new IntersectionObserver((es) => { if (es[0].isIntersecting) { ob.disconnect(); setTimeout(run, 600); } }); ob.observe(mk); });
   // screenshot galleries: autoplay, arrows, dots, swipe, pause on hover
   document.querySelectorAll('.gal').forEach((g) => { const tr = g.querySelector('.track'), n = tr.children.length, dots = g.querySelector('.dots'); let i = 0, t;
-    const go = (k, user) => { i = (k + n) % n; tr.style.transform = `translateX(${-100 * i}%)`; [...dots.children].forEach((d, j) => d.classList.toggle('on', j === i)); if (user) play(); };
-    const play = () => { clearInterval(t); if (n > 1 && !reduce) t = setInterval(() => go(i + 1), +g.dataset.auto || 4500); };
+    let manual = false; const go = (k, user) => { i = (k + n) % n; tr.style.transform = `translateX(${-100 * i}%)`; [...dots.children].forEach((d, j) => d.classList.toggle('on', j === i)); if (user) { manual = true; clearInterval(t); g.classList.add('manual'); } };
+    const play = () => { clearInterval(t); if (n > 1 && !reduce && !manual) t = setInterval(() => go(i + 1), +g.dataset.auto || 4500); };
     for (let k = 0; k < n; k++) { const b = document.createElement('button'); b.setAttribute('aria-label', 'Screenshot ' + (k + 1)); b.onclick = () => go(k, true); dots.appendChild(b); }
     g.querySelector('.prev').onclick = () => go(i - 1, true); g.querySelector('.next').onclick = () => go(i + 1, true);
-    g.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') clearInterval(t); }); g.addEventListener('pointerleave', play);
     let sx = null; tr.addEventListener('touchstart', (e) => { sx = e.touches[0].clientX; }, { passive: true }); tr.addEventListener('touchend', (e) => { if (sx == null) return; const dx = e.changedTouches[0].clientX - sx; if (Math.abs(dx) > 40) go(i + (dx < 0 ? 1 : -1), true); sx = null; });
     if (n < 2) g.querySelectorAll('.gnav,.dots').forEach((x) => (x.style.display = 'none')); go(0); play(); });
   // attachment picker: show chosen file, enforce 5 MB
