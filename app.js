@@ -24,7 +24,7 @@
   document.querySelectorAll('.card').forEach((el) => {
     el.addEventListener('pointermove', (e) => { const r = el.getBoundingClientRect(), px = e.clientX - r.left, py = e.clientY - r.top;
       el.style.setProperty('--mx', px + 'px'); el.style.setProperty('--my', py + 'px');
-      if (!reduce) el.style.transform = `perspective(900px) rotateX(${(py / r.height - .5) * -6}deg) rotateY(${(px / r.width - .5) * 6}deg)`; });
+      if (!reduce) el.style.transform = `perspective(900px) rotateX(${(py / r.height - .5) * -10}deg) rotateY(${(px / r.width - .5) * 10}deg) translateY(-6px)`; });
     el.addEventListener('pointerleave', () => { el.style.transform = ''; });
   });
   // magnetic buttons
@@ -38,6 +38,39 @@
   if (t) { const words = JSON.parse(t.dataset.words); let w = 0, i = 0, del = false;
     const tick = () => { const s = words[w]; t.textContent = s.slice(0, i); if (!del && i < s.length) i++; else if (del && i > 0) i--; else if (!del) { del = true; return setTimeout(tick, 1400); } else { del = false; w = (w + 1) % words.length; }
       setTimeout(tick, del ? 45 : 85); }; tick(); }
+
+  // header: cursor spotlight + scrolled state
+  const nav = document.querySelector('.nav');
+  if (nav) { nav.addEventListener('pointermove', (e) => { const r = nav.getBoundingClientRect(); nav.style.setProperty('--nx', (e.clientX - r.left) + 'px'); nav.style.setProperty('--ny', (e.clientY - r.top) + 'px'); });
+    const sc = () => nav.classList.toggle('scrolled', scrollY > 30); sc(); addEventListener('scroll', sc, { passive: true }); }
+  // live Panchang (local astronomical calc, same approach as the Sanatan Sadhak app)
+  const pc = document.getElementById('panchang');
+  if (pc) { const d2r = Math.PI / 180, n360 = (x) => ((x % 360) + 360) % 360, sn = (x) => Math.sin(x * d2r);
+    const now = new Date(), ist = new Date(now.getTime() + (330 + now.getTimezoneOffset()) * 60000);
+    const rise = Date.UTC(ist.getFullYear(), ist.getMonth(), ist.getDate(), 1, 0); // ~06:30 IST sunrise
+    const T = (rise / 864e5 + 2440587.5 - 2451545) / 36525;
+    const M = 357.5291092 + 35999.0502909 * T, Lp = 218.3164477 + 481267.88123421 * T, D = 297.8501921 + 445267.1114034 * T, Mp = 134.9633964 + 477198.8675055 * T, F = 93.272095 + 483202.0175233 * T;
+    const sun = n360(280.46646 + 36000.76983 * T + (1.914602 - .004817 * T) * sn(M) + .019993 * sn(2 * M) + .000289 * sn(3 * M) - .00569);
+    const moon = n360(Lp + 6.288774 * sn(Mp) + 1.274027 * sn(2 * D - Mp) + .658314 * sn(2 * D) + .213618 * sn(2 * Mp) - .185116 * sn(M) - .114332 * sn(2 * F) + .058793 * sn(2 * D - 2 * Mp) + .057066 * sn(2 * D - M - Mp) + .053322 * sn(2 * D + Mp) + .045758 * sn(2 * D - M) - .040923 * sn(M - Mp) - .03472 * sn(D) - .030383 * sn(M + Mp));
+    const ti = Math.floor(n360(moon - sun) / 12), shukla = ti < 15, k = ti % 15;
+    const TN = ['Pratipada','Dwitiya','Tritiya','Chaturthi','Panchami','Shashthi','Saptami','Ashtami','Navami','Dashami','Ekadashi','Dwadashi','Trayodashi','Chaturdashi', shukla ? 'Purnima' : 'Amavasya'];
+    const NK = ['Ashwini','Bharani','Krittika','Rohini','Mrigashira','Ardra','Punarvasu','Pushya','Ashlesha','Magha','Purva Phalguni','Uttara Phalguni','Hasta','Chitra','Swati','Vishakha','Anuradha','Jyeshtha','Mula','Purva Ashadha','Uttara Ashadha','Shravana','Dhanishta','Shatabhisha','Purva Bhadrapada','Uttara Bhadrapada','Revati'];
+    const ayan = 23.853 + (T * 100) * .01397, nak = NK[Math.floor(n360(moon - ayan) / (360 / 27))];
+    const VA = ['Ravivar','Somvar','Mangalvar','Budhvar','Guruvar','Shukravar','Shanivar'];
+    const tithi = TN[k], tips = { Ekadashi: 'Ekadashi vrat is kept from sunrise to the next morning; chant Vishnu’s names.', Chaturthi: 'Chaturthi is dear to Shri Ganesha; offer durva and modak.', Trayodashi: 'Pradosh kaal this evening is ideal for Shiva puja.', Ashtami: 'Ashtami is auspicious for Devi upasana.', Purnima: 'Purnima: Satyanarayan katha and charity bring blessings.', Amavasya: 'Amavasya: remember your ancestors with tarpan and daan.', Navami: 'Navami is sacred to Shri Ram and Devi.' };
+    const set = (k2, v) => { const el = pc.parentNode.querySelector(`[data-p="${k2}"]`); if (el) el.textContent = v; };
+    set('vaar', VA[ist.getDay()]); set('paksha', (shukla ? 'Shukla' : 'Krishna') + ' Paksha'); set('tithi', tithi); set('nak', nak + ' Nakshatra');
+    set('mitra', tips[tithi] || `${tithi} in ${shukla ? 'Shukla' : 'Krishna'} Paksha, a good day to keep your daily japa and sankalpa.`); }
+  // product mock: type each line in turn, then repeat
+  document.querySelectorAll('.mock').forEach((mk) => { const bubs = [...mk.querySelectorAll('.bub')]; if (!bubs.length || reduce) return;
+    const nodes = bubs.map((b) => { const w = document.createTreeWalker(b, NodeFilter.SHOW_TEXT), a = []; let n; while ((n = w.nextNode())) a.push([n, n.textContent]); return a; });
+    const run = () => { nodes.forEach((a) => a.forEach(([n]) => (n.textContent = ''))); let bi = 0, ni = 0, ci = 0;
+      const step = () => { if (bi >= bubs.length) { bubs.forEach((b) => b.classList.remove('typing')); return setTimeout(run, 6000); }
+        const a = nodes[bi]; bubs.forEach((b, j) => b.classList.toggle('typing', j === bi));
+        if (ni >= a.length) { bi++; ni = 0; ci = 0; return setTimeout(step, 450); }
+        const [n, full] = a[ni]; n.textContent = full.slice(0, ++ci); if (ci >= full.length) { ni++; ci = 0; } setTimeout(step, 28); };
+      step(); };
+    const ob = new IntersectionObserver((es) => { if (es[0].isIntersecting) { ob.disconnect(); setTimeout(run, 600); } }); ob.observe(mk); });
   // contact form → email
   const f = document.querySelector('form.contact');
   if (f) f.addEventListener('submit', (e) => { e.preventDefault(); const d = new FormData(f);

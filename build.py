@@ -15,7 +15,7 @@ def page(title, desc, body):
     return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{title}</title><meta name="description" content="{desc}"><meta property="og:title" content="{title}"><meta property="og:description" content="{desc}"><meta name="theme-color" content="#05060f">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=3"><link rel="apple-touch-icon" href="/img/logo-512.png"><meta property="og:image" content="https://k-tech.chaloone.com/img/logo-512.png"><link rel="stylesheet" href="/styles.css">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/fav-32.png"><link rel="icon" type="image/png" sizes="16x16" href="/img/fav-16.png"><link rel="icon" type="image/svg+xml" href="/favicon.svg?v=4"><link rel="apple-touch-icon" href="/img/logo-512.png"><meta property="og:image" content="https://k-tech.chaloone.com/img/logo-512.png"><link rel="stylesheet" href="/styles.css">
 <script type="application/ld+json">{{"@context":"https://schema.org","@type":"Organization","name":"K. Tech Services","url":"https://k-tech.chaloone.com","email":"support@chaloone.com","address":{{"@type":"PostalAddress","addressRegion":"Rajasthan","addressCountry":"IN"}}}}</script>
 </head><body>{NAV}<main>{body}</main>{FOOT}<script src="/app.js" defer></script></body></html>'''
 P={}
@@ -69,7 +69,7 @@ def prod(slug,name,ic,tag,status,lead,feats,how,cta,url,mock):
     h=''.join(f'<li><b>{i+1}</b>{x}</li>' for i,x in enumerate(how))
     btn=f'<a class="btn primary" href="{url}" target="_blank" rel="noopener">{cta} →</a>' if url else f'<a class="btn primary" href="/#contact">{cta} →</a>'
     P[f'products/{slug}.html']=page(f'{name} · K. Tech Services',lead[:155],f'''
-<section class="phero"><div class="wrap split"><div><div class="chip reveal"><b></b>{tag} · {"Live" if status=="live" else "Early access"}</div><img class="plogo big reveal d1" src="/img/{slug}.png" alt="{name} logo"><h1 class="reveal d1"><span class="grad">{name}</span></h1><p class="lead reveal d2">{lead}</p>
+<section class="phero"><div class="wrap split"><div><div class="brandrow reveal"><span class="plogo-wrap {slug}"><img class="plogo big" src="/img/{slug}.png" alt="{name} logo"><i class="flame"></i></span><div class="chip"><b></b>{tag} · {"Live" if status=="live" else "Early access"}</div></div><h1 class="reveal d1"><span class="grad">{name}</span></h1><p class="lead reveal d2">{lead}</p>
 <div class="row reveal d3">{btn}<a class="btn ghost" href="/#contact">Want something like this?</a></div></div><div class="mock reveal d2">{mock}</div></div></section>
 <section><div class="wrap"><div class="kicker reveal">Features</div><h2 class="title reveal d1">What it does</h2><div class="grid g3">{f}</div></div></section>
 <section><div class="wrap split"><div><div class="kicker reveal">How it works</div><h2 class="title reveal d1">Simple from day one.</h2><ul class="list reveal d2">{h}</ul></div>
@@ -81,7 +81,7 @@ prod('chalo-one','Chalo One','🧭','Super-app','live','Compare, plan, book and 
 prod('sanatan-sadhak','Sanatan Sadhak','🪔','Android app','soon','A calm, beautiful app for mantra chanting, daily sadhana, Panchang, temples and Vedic knowledge, with a gentle guide that answers your questions.',
  [('📿','Mantra & jaap counter','A digital mala with counts and history.'),('🎯','Sankalpa & sadhana','Set a sankalpa and follow your daily routine.'),('📅','Panchang & festivals','Tithi, nakshatra and festival calendar.'),('🛕','Temple finder','Find temples near you.'),('📚','Vedic library','Shlokas, aartis, stories, audio and video.'),('🙏','Mitra guide','Ask about rituals and meanings; get clear answers.')],
  ['Install and choose your deities and language.','Pick mantras and set a daily sankalpa.','Chant, listen to aartis and check the Panchang.','Ask the guide and join the community.'],'Request early access',None,
- '<div class="bub"><b>🌅 Today</b> · Shukla Paksha · Ekadashi</div><div class="bub">📿 Om Namah Shivaya · <b>108 / 108</b> ✓</div><div class="bub"><b>Mitra:</b> Ekadashi fasting is observed from sunrise to the next morning…</div>')
+ '<div class="bub" id="panchang"><b>🌅 Today</b> · <span data-p="vaar">…</span> · <span data-p="paksha">…</span> · <span data-p="tithi">…</span> · <span data-p="nak">…</span></div><div class="bub">📿 Om Namah Shivaya · <b>108 / 108</b> ✓</div><div class="bub"><b>Mitra:</b> <span data-p="mitra">Today’s tithi guides your sadhana and vrat…</span></div>')
 prod('socialcord-notifier','SocialCord Notifier','🔔','Discord bot','live','Instant alerts in your Discord server when your Instagram and Facebook accounts post a reel, post or video, with rich embeds and the right roles pinged.',
  [('⚡','Instant alerts','New posts appear in your channel within moments.'),('🎨','Rich embeds','Image, caption and link, styled for Discord.'),('📣','Role mentions','Ping only the roles you choose.'),('🗂️','Many feeds','Each account to its own channel.'),('🔒','Isolated per server','Every server keeps its own settings.'),('🖥️','Simple dashboard','Sign in with Discord and set up in minutes.')],
  ['Add the bot to your server.','Sign in to the dashboard with Discord.','Connect accounts and pick channels.','Choose roles to ping; alerts start right away.'],'Open SocialCord Notifier',SC,
@@ -134,7 +134,7 @@ for k,v in P.items():
         else: extra=f'<link rel="canonical" href="{url}"><meta property="og:url" content="{url}">'
         extra+=('<meta property="og:type" content="website"><meta property="og:site_name" content="K. Tech Services"><meta property="og:locale" content="en_IN">'
                 '<meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="'+BASE+'/img/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">'
-                '<link rel="icon" type="image/png" sizes="48x48" href="/img/favicon-48.png?v=3"><link rel="icon" type="image/png" sizes="192x192" href="/img/icon-192.png?v=3"><link rel="shortcut icon" href="/favicon.ico?v=3"><link rel="manifest" href="/site.webmanifest">'
+                '<link rel="icon" type="image/png" sizes="48x48" href="/img/favicon-48.png?v=4"><link rel="icon" type="image/png" sizes="192x192" href="/img/icon-192.png?v=4"><link rel="shortcut icon" href="/favicon.ico?v=4"><link rel="manifest" href="/site.webmanifest">'
                 '<meta name="author" content="Kunal, K. Tech Services">')
         v=v.replace('<meta property="og:image" content="https://k-tech.chaloone.com/img/logo-512.png">','<meta property="og:image" content="'+BASE+'/img/og.png">')
         import re as _re
