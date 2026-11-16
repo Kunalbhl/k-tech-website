@@ -30,7 +30,7 @@ SERVICES=[('🌐','Website development','Fast, beautiful, SEO-ready websites for
 ('🛒','E-commerce & booking','Online stores, ordering and booking flows, wallets, coupons and payment gateways.'),
 ('🔌','APIs & backend','Secure APIs, databases and integrations with the tools you already use.'),
 ('🧠','AI agents','Smart agents that research, answer, decide and take actions inside your tools, built safely around your data.'),
-('💬','Chatbots & assistants','Website, WhatsApp and in-app chatbots that answer customers 24/7 and hand over to your team when needed.'),
+('💬','Chatbots & assistants','Website, Discord and in-app chatbots that answer customers 24/7 and hand over to your team when needed.'),
 ('🤖','Discord bots','Custom Discord bots for communities: onboarding, roles, applications, alerts, rewards and moderation.'),
 ('⚡','Automation & workflows','Connect your apps and remove repeated manual work: reports, reminders, sync and notifications.'),
 ('☁️','Hosting, care & growth','Deployment, domains, speed, security updates, analytics and SEO, so your product keeps getting better.'),
