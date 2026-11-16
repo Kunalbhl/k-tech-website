@@ -74,7 +74,7 @@ def plogo(slug,name):
     return ('<img class="plogo hero-ss" src="/img/sanatan-sadhak-hero.webp" alt="Sanatan Sadhak logo" width="380" height="440">'
       '<span class="fire" aria-hidden="true"><i class="f1"></i><i class="f2"></i><i class="f3"></i><i class="f4"></i><b></b><b></b><b></b><b></b><b></b></span>'
       '<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="fireWarp"><feTurbulence type="fractalNoise" baseFrequency="0.035 0.09" numOctaves="2" seed="3" result="n">'
-      '<animate attributeName="baseFrequency" dur="2.2s" values="0.035 0.09;0.05 0.13;0.035 0.09" repeatCount="indefinite"/></feTurbulence><feDisplacementMap in="SourceGraphic" in2="n" scale="9"/></filter></svg>')
+      '<animate attributeName="baseFrequency" dur="2.2s" values="0.035 0.09;0.05 0.13;0.035 0.09" repeatCount="indefinite"/></feTurbulence><feDisplacementMap in="SourceGraphic" in2="n" scale="12"/></filter></svg>')
 def prod(slug,name,ic,tag,status,lead,feats,how,cta,url,mock):
     f=''.join(f'<div class="card reveal d{i%3}"><div class="ic">{a}</div><h3>{b}</h3><p>{c}</p></div>' for i,(a,b,c) in enumerate(feats))
     h=''.join(f'<li><b>{i+1}</b>{x}</li>' for i,x in enumerate(how))

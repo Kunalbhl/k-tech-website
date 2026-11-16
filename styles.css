@@ -156,8 +156,8 @@ a.card{display:block;color:inherit;text-decoration:none}a.card .go{margin-top:16
 .gal.phones .track img{border-radius:0;filter:drop-shadow(0 24px 40px rgba(0,0,0,.6))}
 @media(max-width:900px){.gal.phones .track img{flex-basis:50%;width:50%}}@media(max-width:560px){.gal.phones .track img{flex-basis:100%;width:100%;padding:0 18%}}
 .gal.phones img{clip-path:inset(0 round 34px)}
-.plogo.hero-ss{width:150px;height:auto;border-radius:26px;display:block;object-fit:cover;box-shadow:0 18px 50px rgba(255,120,20,.25),0 0 0 1px rgba(255,170,80,.25)}
-.plogo-wrap .fire{position:absolute;left:49.6%;top:24.2%;width:15%;height:20%;transform:translate(-50%,-100%);pointer-events:none;filter:url(#fireWarp);mix-blend-mode:screen}
+.plogo.hero-ss{width:170px;height:auto;border-radius:26px;display:block;object-fit:cover;box-shadow:0 18px 50px rgba(255,120,20,.25),0 0 0 1px rgba(255,170,80,.25)}
+.plogo-wrap .fire{position:absolute;left:49.6%;top:26%;width:24%;height:30%;transform:translate(-50%,-100%);pointer-events:none;filter:url(#fireWarp);mix-blend-mode:screen}
 .fire i{position:absolute;left:50%;bottom:0;border-radius:50% 50% 50% 50%/62% 62% 38% 38%;transform-origin:50% 100%;translate:-50% 0}
 .fire .f1{width:100%;height:100%;background:radial-gradient(ellipse at 50% 85%,rgba(255,90,0,.95),rgba(220,30,0,.55) 45%,transparent 72%);animation:fl1 .9s ease-in-out infinite alternate}
 .fire .f2{width:72%;height:82%;background:radial-gradient(ellipse at 50% 85%,#ffb000,rgba(255,110,0,.85) 50%,transparent 75%);animation:fl2 .7s ease-in-out infinite alternate}
