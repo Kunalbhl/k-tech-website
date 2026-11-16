@@ -15,7 +15,7 @@ def page(title, desc, body):
     return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{title}</title><meta name="description" content="{desc}"><meta property="og:title" content="{title}"><meta property="og:description" content="{desc}"><meta name="theme-color" content="#05060f">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2"><link rel="apple-touch-icon" href="/img/logo-512.png"><meta property="og:image" content="https://k-tech.chaloone.com/img/logo-512.png"><link rel="stylesheet" href="/styles.css">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=3"><link rel="apple-touch-icon" href="/img/logo-512.png"><meta property="og:image" content="https://k-tech.chaloone.com/img/logo-512.png"><link rel="stylesheet" href="/styles.css">
 <script type="application/ld+json">{{"@context":"https://schema.org","@type":"Organization","name":"K. Tech Services","url":"https://k-tech.chaloone.com","email":"support@chaloone.com","address":{{"@type":"PostalAddress","addressRegion":"Rajasthan","addressCountry":"IN"}}}}</script>
 </head><body>{NAV}<main>{body}</main>{FOOT}<script src="/app.js" defer></script></body></html>'''
 P={}
@@ -126,7 +126,7 @@ for k,v in P.items():
         else: extra=f'<link rel="canonical" href="{url}"><meta property="og:url" content="{url}">'
         extra+=('<meta property="og:type" content="website"><meta property="og:site_name" content="K. Tech Services"><meta property="og:locale" content="en_IN">'
                 '<meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="'+BASE+'/img/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">'
-                '<link rel="icon" type="image/png" sizes="48x48" href="/img/favicon-48.png?v=2"><link rel="icon" type="image/png" sizes="192x192" href="/img/icon-192.png?v=2"><link rel="shortcut icon" href="/favicon.ico?v=2"><link rel="manifest" href="/site.webmanifest">'
+                '<link rel="icon" type="image/png" sizes="48x48" href="/img/favicon-48.png?v=3"><link rel="icon" type="image/png" sizes="192x192" href="/img/icon-192.png?v=3"><link rel="shortcut icon" href="/favicon.ico?v=3"><link rel="manifest" href="/site.webmanifest">'
                 '<meta name="author" content="Kunal, K. Tech Services">')
         v=v.replace('<meta property="og:image" content="https://k-tech.chaloone.com/img/logo-512.png">','<meta property="og:image" content="'+BASE+'/img/og.png">')
         import re as _re
