@@ -10,7 +10,7 @@ FOOT='''<footer><div class="wrap"><div class="cols">
 <div><h4>Services</h4><ul><li><a href="/#services">Website development</a></li><li><a href="/#services">Web app development</a></li><li><a href="/#services">Mobile app development</a></li><li><a href="/#services">UI / UX design</a></li><li><a href="/#services">AI agents</a></li><li><a href="/#services">Chatbots</a></li><li><a href="/#services">Discord bots</a></li><li><a href="/#services">Automation</a></li><li><a href="/#services">And many more tech services</a></li></ul></div>
 <div><h4>Products</h4><ul><li><a href="/products/chalo-one.html">Chalo One</a></li><li><a href="/products/sanatan-sadhak.html">Sanatan Sadhak</a></li><li><a href="/products/socialcord-notifier.html">SocialCord Notifier</a></li><li><a href="/products/community-manager.html">Community Manager</a></li></ul></div>
 <div><h4>Company</h4><ul><li><a href="/about.html">About</a></li><li><a href="/#contact">Contact</a></li><li><a href="mailto:support@chaloone.com">support@chaloone.com</a></li><li><a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></li></ul></div>
-</div><div class="legal"><span>© <span id="y"></span> K. Tech Services · Udyam registered MSME, India</span><span>Designed &amp; built by K. Tech Services</span></div></div></footer>'''
+</div><div class="legal"><span>© <span id="y"></span> K. Tech Services. All rights reserved. · Udyam-registered MSME, India</span><span>Owned &amp; built by Kunal Pareek</span></div></div></footer>'''
 def page(title, desc, body):
     return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{title}</title><meta name="description" content="{desc}"><meta property="og:title" content="{title}"><meta property="og:description" content="{desc}"><meta name="theme-color" content="#05060f">
@@ -91,11 +91,19 @@ prod('community-manager','Community Manager','🛡️','Discord bot','live','App
  ['Add the bot and sign in with Discord.','Follow the setup guide.','Post the Apply panel; members apply in Discord.','Review, interview and approve; rewards and reports run on their own.'],'Open Community Manager',CM,
  '<div class="bub">📋 <b>Join our team</b> · Press Apply to start</div><div class="bub">✅ Approved · 🎟️ Code <b>KUN-007</b> created</div><div class="bub">📊 Weekly report · +12 joined · 92% still here</div>')
 P['about.html']=page('About · K. Tech Services','About K. Tech Services and its founder.',f'''
-<section class="phero"><div class="wrap me"><div class="avatar reveal"><div><span class="grad">K</span></div></div><div><div class="kicker reveal">About</div><h1 class="reveal d1">Hi, I’m <span class="grad">Kunal.</span></h1>
+<section class="phero"><div class="wrap me"><div class="avatar reveal"><div><img src="/img/logo.svg" alt="K. Tech Services logo" style="width:62%;height:62%"></div></div><div><div class="kicker reveal">About</div><h1 class="reveal d1">Hi, I’m <span class="grad">Kunal.</span></h1>
 <p class="lead reveal d2">I started K. Tech Services to build software the way I like to use it: fast, clear and genuinely useful. I take products from idea to launch myself: design, front-end, back-end, mobile and hosting.</p>
 <p class="sub reveal d3">Alongside client work I build and run my own products: Chalo One, Sanatan Sadhak, SocialCord Notifier and Community Manager. Running them every day keeps my skills sharp and my promises honest.</p>
 <div class="row reveal d3" style="margin-top:28px"><a class="btn primary" href="/#contact">Work with me →</a><a class="btn ghost" href="/#work">See products</a></div>
-<p class="sub" style="font-size:14px;margin-top:30px">K. Tech Services · Udyam registered MSME · Rajasthan, India · support@chaloone.com</p></div></div></section>''')
+</div></div></section>
+<section><div class="wrap"><div class="facts reveal"><h2>Company at a glance</h2><dl>
+<dt>Company</dt><dd>K. Tech Services</dd>
+<dt>Owner &amp; founder</dt><dd>Kunal Pareek</dd>
+<dt>What we do</dt><dd>Websites, web &amp; mobile apps, AI agents, chatbots and Discord bots</dd>
+<dt>Our products</dt><dd>Chalo One · Sanatan Sadhak · SocialCord Notifier · Community Manager</dd>
+<dt>Registration</dt><dd>Udyam-registered MSME, Rajasthan, India</dd>
+<dt>Contact</dt><dd><a href="mailto:support@chaloone.com">support@chaloone.com</a></dd>
+</dl><p class="rights">© K. Tech Services. All rights reserved. The K. Tech Services name and logo, and the names and logos of its products, belong to K. Tech Services. Other brand names belong to their owners. See our <a href="/privacy">Privacy policy</a> and <a href="/terms">Terms</a>.</p></div></div></section>''')
 P['privacy.html']=page('Privacy policy · K. Tech Services','How K. Tech Services handles personal data.',f'''<section class="phero"><div class="wrap prose"><h1>Privacy policy</h1><p>Last updated: 15 November 2026</p>
 <p>This policy explains how K. Tech Services collects and uses information on this website and in our products: Chalo One, Sanatan Sadhak, SocialCord Notifier and Community Manager.</p>
 <h2>What we collect</h2><ul><li>Details you give us, such as name and email.</li><li>For Discord products: your Discord user ID, username and the server settings you configure. We do not read private messages.</li><li>Content you create in our products, such as orders, mantra counts, applications or settings.</li><li>Basic technical data used to keep services secure and working.</li></ul>
