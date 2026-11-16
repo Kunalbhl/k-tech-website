@@ -129,3 +129,6 @@ footer h4{color:#fff;margin:0 0 14px}footer ul{list-style:none;padding:0;margin:
 @keyframes glowp{to{transform:scale(1.25);opacity:.7}}
 .mock .bub.typing:after{content:"";display:inline-block;width:2px;height:1em;margin-left:2px;vertical-align:-2px;background:#22d3ee;animation:blink .8s steps(1) infinite}
 @keyframes blink{50%{opacity:0}}
+.drop{display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:14px;border:1px dashed rgba(255,255,255,.22);background:rgba(5,6,15,.45);cursor:pointer;text-align:left;transition:border-color .25s,background .25s,transform .25s}
+.drop:hover{border-color:#8b5cf6;background:rgba(124,92,255,.08);transform:translateY(-2px)}.drop.has{border-style:solid;border-color:#22d3ee}
+.drop input{position:absolute;width:1px;height:1px;opacity:0}.drop .dic{font-size:22px}.drop .dtx{display:flex;flex-direction:column;gap:4px;font-size:15px}.drop small{color:var(--muted);font-size:13px}

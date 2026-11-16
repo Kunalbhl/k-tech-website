@@ -71,11 +71,12 @@
         const [n, full] = a[ni]; n.textContent = full.slice(0, ++ci); if (ci >= full.length) { ni++; ci = 0; } setTimeout(step, 28); };
       step(); };
     const ob = new IntersectionObserver((es) => { if (es[0].isIntersecting) { ob.disconnect(); setTimeout(run, 600); } }); ob.observe(mk); });
-  // contact form → email
-  const f = document.querySelector('form.contact');
-  if (f) f.addEventListener('submit', (e) => { e.preventDefault(); const d = new FormData(f);
-    const body = `Name: ${d.get('name')}\nEmail: ${d.get('email')}\nService: ${d.get('service')}\nBudget: ${d.get('budget')}\n\n${d.get('msg')}`;
-    location.href = `mailto:support@chaloone.com?subject=${encodeURIComponent('Project enquiry: ' + d.get('service'))}&body=${encodeURIComponent(body)}`; });
+  // attachment picker: show chosen file, enforce 5 MB
+  const att = document.getElementById('att');
+  if (att) att.addEventListener('change', () => { const f = att.files[0], t = att.closest('.drop').querySelector('b');
+    if (f && f.size > 5 * 1024 * 1024) { att.value = ''; t.textContent = 'File is over 5 MB, please share a link instead'; return; }
+    t.textContent = f ? '✓ ' + f.name : 'Attach a file'; att.closest('.drop').classList.toggle('has', !!f); });
+  const cf = document.querySelector('form.contact'); if (cf) cf.addEventListener('submit', () => { const b = cf.querySelector('button'); b.textContent = 'Sending…'; b.disabled = true; });
   const y = document.getElementById('y'); if (y) y.textContent = new Date().getFullYear();
   const mb = document.querySelector('.menu'); if (mb) mb.onclick = () => document.getElementById('links').classList.toggle('open');
 })();

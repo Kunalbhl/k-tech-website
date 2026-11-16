@@ -62,10 +62,10 @@ P['index.html']=page('K. Tech Services by Kunal · Website, App, AI & Discord Bo
 <section><div class="wrap"><div class="kicker reveal">Tools I use</div><h2 class="title reveal d1">Modern stack. Built to last.</h2><div class="tech reveal d2">{''.join(f'<span>{t}</span>' for t in TECH)}</div></div></section>
 <section id="contact"><div class="wrap"><div class="cta reveal"><div class="kicker">Let’s build</div><h2>Have an idea? <span class="grad">Let’s make it real.</span></h2>
 <p class="sub" style="margin:16px auto 0">Tell me what you need. I reply within one working day.</p>
-<form class="contact" style="max-width:760px;margin-inline:auto"><div class="two"><input class="field" name="name" placeholder="Your name" required><input class="field" type="email" name="email" placeholder="Your email" required></div>
+<form class="contact" action="https://formsubmit.co/support@chaloone.com" method="POST" enctype="multipart/form-data" style="max-width:760px;margin-inline:auto"><input type="hidden" name="_subject" value="New project enquiry · k-tech.chaloone.com"><input type="hidden" name="_template" value="table"><input type="hidden" name="_next" value="https://k-tech.chaloone.com/thanks"><input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off"><div class="two"><input class="field" name="name" placeholder="Your name" required><input class="field" type="email" name="email"  placeholder="Your email" required></div>
 <div class="two"><select class="field" name="service"><option>Website</option><option>Web app</option><option>Mobile app</option><option>E-commerce / booking</option><option>UI / UX design</option><option>Discord bot</option><option>Something else</option></select>
 <select class="field" name="budget"><option>Budget: not sure yet</option><option>Under ₹25,000</option><option>₹25,000 – ₹1,00,000</option><option>₹1,00,000 – ₹5,00,000</option><option>₹5,00,000+</option></select></div>
-<textarea class="field" name="msg" rows="5" placeholder="Tell me about your project" required></textarea><div><button class="btn primary">Send enquiry →</button></div></form></div></div></section>''')
+<textarea class="field" name="msg" rows="5" placeholder="Tell me about your project" required></textarea><label class="drop"><input type="file" name="attachment" id="att"><span class="dic">📎</span><span class="dtx"><b>Attach a file</b> (optional)<small>Brief, document, PDF, sheet, images or a ZIP · up to 5 MB. Bigger files? Paste a Drive link in the message.</small></span></label><div><button class="btn primary">Send enquiry →</button></div></form></div></div></section>''')
 def prod(slug,name,ic,tag,status,lead,feats,how,cta,url,mock):
     f=''.join(f'<div class="card reveal d{i%3}"><div class="ic">{a}</div><h3>{b}</h3><p>{c}</p></div>' for i,(a,b,c) in enumerate(feats))
     h=''.join(f'<li><b>{i+1}</b>{x}</li>' for i,x in enumerate(how))
@@ -116,6 +116,7 @@ P['terms.html']=page('Terms of service · K. Tech Services','Terms for K. Tech S
 <p>By using our website or products you agree to these terms.</p><h2>Using our products</h2><ul><li>Use them lawfully and follow the rules of connected platforms, such as Discord’s Terms of Service.</li><li>You are responsible for your account and content.</li><li>We may suspend use that harms others or our services.</li></ul>
 <h2>Availability</h2><p>Services may change or be unavailable at times. Early-access features may change.</p><h2>Liability</h2><p>Products are provided “as is”. To the extent allowed by law, K. Tech Services is not liable for indirect losses.</p>
 <h2>Governing law</h2><p>These terms are governed by the laws of India.</p><h2>Contact</h2><p>support@chaloone.com</p></div></section>''')
+P['thanks.html']=page('Thank you · K. Tech Services','Your enquiry has been sent.','<section class="phero"><div class="wrap" style="text-align:center"><h1>Thank you<span class="grad">!</span></h1><p class="lead" style="margin-inline:auto">Your enquiry reached me. I reply within one working day at the email you gave.</p><div class="row" style="justify-content:center;margin-top:28px"><a class="btn primary" href="/">Back to home →</a></div></div></section>')
 P['404.html']=page('Not found · K. Tech Services','Page not found.','<section class="phero"><div class="wrap" style="text-align:center"><h1><span class="grad">404</span></h1><p class="lead" style="margin-inline:auto">This page doesn’t exist.</p><div class="row" style="justify-content:center"><a class="btn primary" href="/">Go home</a></div></div></section>')
 P['contact.html']='<!doctype html><meta http-equiv="refresh" content="0;url=/#contact"><link rel="canonical" href="/#contact">'
 import json as _j
@@ -132,7 +133,7 @@ for k,v in P.items():
         if k.startswith('products/') and slug in APPS:
             n,u,cat=APPS[slug]
             graph.append({"@type":"SoftwareApplication","name":n,"url":u,"applicationCategory":cat,"operatingSystem":"Android" if slug=='sanatan-sadhak' else "Web, Discord" if 'cord' in slug or 'community' in slug else "Web","image":BASE+'/img/'+slug+'.png',"author":{"@id":BASE+"/#org"},"publisher":{"@id":BASE+"/#org"},"offers":{"@type":"Offer","price":"0","priceCurrency":"INR"}})
-        if k=='404.html': extra='<meta name="robots" content="noindex">'
+        if k in('404.html','thanks.html'): extra='<meta name="robots" content="noindex">'
         else: extra=f'<link rel="canonical" href="{url}"><meta property="og:url" content="{url}">'
         extra+=('<meta property="og:type" content="website"><meta property="og:site_name" content="K. Tech Services"><meta property="og:locale" content="en_IN">'
                 '<meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="'+BASE+'/img/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">'
