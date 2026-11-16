@@ -71,7 +71,7 @@ P['index.html']=page('K. Tech Services by Kunal · Website, App, AI & Discord Bo
 <textarea class="field" name="msg" rows="5" placeholder="Tell me about your project" required></textarea><label class="drop"><input type="file" name="attachment" id="att"><span class="dic">📎</span><span class="dtx"><b>Attach a file</b> (optional)<small>Brief, document, PDF, sheet, images or a ZIP · up to 5 MB. Bigger files? Paste a Drive link in the message.</small></span></label><div><button class="btn primary">Send enquiry →</button></div></form></div></div></section>''')
 def plogo(slug,name):
     if slug!='sanatan-sadhak': return f'<img class="plogo big" src="/img/{slug}.png" alt="{name} logo">'
-    return ('<img class="plogo hero-ss" src="/img/sanatan-sadhak-hero.webp" alt="Sanatan Sadhak logo" width="380" height="440">'
+    return ('<img class="plogo hero-ss" src="/img/sanatan-sadhak-hero.webp" alt="Sanatan Sadhak logo" width="440" height="440">'
       '<span class="fire" aria-hidden="true"><i class="f1"></i><i class="f2"></i><i class="f3"></i><i class="f4"></i><b></b><b></b><b></b><b></b><b></b></span>'
       '<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="fireWarp"><feTurbulence type="fractalNoise" baseFrequency="0.035 0.09" numOctaves="2" seed="3" result="n">'
       '<animate attributeName="baseFrequency" dur="2.2s" values="0.035 0.09;0.05 0.13;0.035 0.09" repeatCount="indefinite"/></feTurbulence><feDisplacementMap in="SourceGraphic" in2="n" scale="12"/></filter></svg>')
