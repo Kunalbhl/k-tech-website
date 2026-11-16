@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Privacy Policy · SocialCord Notifier</title>
+<meta name="description" content="Privacy Policy for SocialCord Notifier, a product of K. Tech Services." />
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; background: #0d0e12; color: #e4e4e7; font: 16px/1.7 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 780px; margin: 0 auto; padding: 40px 20px 64px; }
+  h1 { font-size: 32px; margin: 0 0 4px; color: #fff; }
+  h2 { font-size: 20px; margin: 34px 0 8px; color: #fff; }
+  .muted { color: #a1a1aa; font-size: 14px; }
+  .box { background: #16171d; border: 1px solid #2a2b33; border-radius: 12px; padding: 14px 18px; margin: 18px 0; }
+  a { color: #a5b4fc; } li { margin: 5px 0; } code { background:#1f2028; padding:1px 6px; border-radius:6px; }
+  table { border-collapse: collapse; width: 100%; font-size: 15px; } td, th { border: 1px solid #2a2b33; padding: 8px 10px; text-align: left; vertical-align: top; }
+  nav { margin-top: 44px; font-size: 14px; color: #a1a1aa; }
+</style></head>
+<body><main>
+<h1>Privacy Policy</h1>
+<p class="muted">SocialCord Notifier · a product of <a href="https://k-tech.chaloone.com">K. Tech Services</a> · Last updated 16 November 2026</p>
+<p>SocialCord Notifier is a Discord bot and web dashboard that announces new Instagram and Facebook posts in Discord channels chosen by server administrators. It is built and operated by K. Tech Services, India ("we", "us"). This policy explains what we collect, why, and the choices you have.</p>
+<div class="box"><b>In short:</b> we only read what is needed to detect new posts and deliver notifications. We never see your passwords, never post or message on your behalf, and never sell your data.</div>
+
+<h2>1. Information we collect</h2>
+<table>
+<tr><th>Source</th><th>What</th><th>Why</th></tr>
+<tr><td>Discord login</td><td>Discord user ID, username, avatar, and the list of servers you can manage (<code>identify</code>, <code>guilds</code>)</td><td>To sign you in and let you configure servers you manage</td></tr>
+<tr><td>Discord servers using the bot</td><td>Server ID and name, channel and role IDs chosen for notifications, bot settings</td><td>To post notifications in the right place and mention the right roles</td></tr>
+<tr><td>Instagram login (optional, by the account owner)</td><td>Account ID, username, profile picture, account type, and the account's own public posts and collaboration posts (caption, media links, time, permalink); an access token</td><td>To detect new posts and show them in Discord</td></tr>
+<tr><td>Facebook login (optional, by the Page admin)</td><td>The Pages you choose and their linked Instagram accounts, Page posts (read only); an access token</td><td>Same as above, for Facebook Pages</td></tr>
+<tr><td>Public data</td><td>Public posts of Instagram Business/Creator accounts that are not connected, read through Meta's official APIs</td><td>To track public accounts a server admin adds</td></tr>
+<tr><td>Technical</td><td>Delivery logs, error logs, basic request data (IP address, browser) kept for security</td><td>To keep the service reliable and secure</td></tr>
+</table>
+<p>Permissions requested from Meta are read-only: <code>instagram_business_basic</code>, <code>instagram_business_manage_comments</code> (required by Meta to read collaboration posts; we never write comments), <code>pages_show_list</code>, <code>pages_read_engagement</code>, <code>instagram_basic</code>, <code>business_management</code>.</p>
+
+<h2>2. What we never do</h2>
+<ul>
+  <li>We never see or store Instagram or Facebook passwords, or your Discord password. Login happens on their own pages.</li>
+  <li>We never post, comment, like, or send or read direct messages on your behalf.</li>
+  <li>We never read the messages in your Discord server.</li>
+  <li>We never sell your data, share it with advertisers, or use it to train AI models.</li>
+</ul>
+
+<h2>3. How we use information</h2>
+<p>Only to run SocialCord Notifier: detecting new posts, sending notifications to the Discord channels configured by the server's administrators, showing delivery history and status in the dashboard, preventing abuse, and answering support requests.</p>
+
+<h2>4. Sharing</h2>
+<p>We share data only with the services needed to run SocialCord Notifier: Discord and Meta (to read and deliver content), and our hosting and database providers (Google Cloud, Cloudflare, Supabase, Oracle Cloud), which process it on our behalf. We may disclose information if required by law.</p>
+
+<h2>5. Storage and security</h2>
+<p>Data is stored in a managed PostgreSQL database. Access tokens are encrypted at rest, all traffic uses HTTPS, and access is limited to the service itself and its operator.</p>
+
+<h2>6. Retention</h2>
+<p>We keep data while an account or server is using SocialCord Notifier. When access is removed or you ask us, we delete the stored tokens and account details within 7 days. Delivery and security logs are kept for up to 90 days.</p>
+
+<h2>7. Your choices and rights</h2>
+<ul>
+  <li><b>Disconnect Instagram:</b> Instagram → Settings → Apps and websites → remove SocialCord Notifier.</li>
+  <li><b>Disconnect Facebook:</b> Facebook → Settings → Business integrations → remove SocialCord Notifier.</li>
+  <li><b>Remove from Discord:</b> remove the bot from your server; notifications stop immediately.</li>
+  <li><b>Access, correction or deletion:</b> contact us (below) and we will respond within 30 days. See <a href="https://socialcord.chaloone.com/data-deletion">Data Deletion</a>.</li>
+</ul>
+<p>We process personal data in line with India's Digital Personal Data Protection Act, 2023 and, where applicable, other privacy laws such as the GDPR.</p>
+
+<h2>8. Children</h2>
+<p>SocialCord Notifier follows Discord's age requirements and is not intended for anyone under 13 (or the minimum age in their country).</p>
+
+<h2>9. Changes</h2>
+<p>We will update this page if our practices change and show the new date at the top.</p>
+
+<h2>10. Contact</h2>
+<p>K. Tech Services · email <a href="mailto:support@chaloone.com">support@chaloone.com</a> or join <a href="https://discord.gg/F4TuMNc">our Discord support server</a>.</p>
+<nav><a href="https://socialcord.chaloone.com/">Home</a> · <a href="/socialcord-notifier/privacy">Privacy Policy</a> · <a href="/socialcord-notifier/terms">Terms of Service</a> · <a href="https://socialcord.chaloone.com/data-deletion">Data Deletion</a> · <a href="https://k-tech.chaloone.com">K. Tech Services</a></nav>
+</main></body></html>
