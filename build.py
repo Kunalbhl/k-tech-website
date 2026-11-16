@@ -1,3 +1,5 @@
+import hashlib as _h
+ASSETV=_h.md5(open('styles.css','rb').read()+open('app.js','rb').read()).hexdigest()[:8]
 SC='https://socialcord.chaloone.com/'
 CM='https://community-manager.chaloone.com/'
 APP='https://app.chaloone.com/'
@@ -15,9 +17,9 @@ def page(title, desc, body):
     return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{title}</title><meta name="description" content="{desc}"><meta property="og:title" content="{title}"><meta property="og:description" content="{desc}"><meta name="theme-color" content="#05060f">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="icon" type="image/png" sizes="32x32" href="/img/fav-32.png"><link rel="icon" type="image/png" sizes="16x16" href="/img/fav-16.png"><link rel="icon" type="image/svg+xml" href="/favicon.svg?v=4"><link rel="apple-touch-icon" href="/img/logo-512.png"><meta property="og:image" content="https://k-tech.chaloone.com/img/logo-512.png"><link rel="stylesheet" href="/styles.css">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/fav-32.png"><link rel="icon" type="image/png" sizes="16x16" href="/img/fav-16.png"><link rel="icon" type="image/svg+xml" href="/favicon.svg?v=4"><link rel="apple-touch-icon" href="/img/logo-512.png"><meta property="og:image" content="https://k-tech.chaloone.com/img/logo-512.png"><link rel="stylesheet" href="/styles.css?v={ASSETV}">
 <script type="application/ld+json">{{"@context":"https://schema.org","@type":"Organization","name":"K. Tech Services","url":"https://k-tech.chaloone.com","email":"support@chaloone.com","address":{{"@type":"PostalAddress","addressRegion":"Rajasthan","addressCountry":"IN"}}}}</script>
-</head><body>{NAV}<main>{body}</main>{FOOT}<script src="/app.js" defer></script></body></html>'''
+</head><body>{NAV}<main>{body}</main>{FOOT}<script src="/app.js?v={ASSETV}" defer></script></body></html>'''
 P={}
 SERVICES=[('🌐','Website development','Fast, beautiful, SEO-ready websites for businesses, brands and portfolios, with smooth animations and an easy way to update content.'),
 ('⚙️','Web app development','Dashboards, portals, booking systems and SaaS products, with logins, payments, admin panels and real-time data.'),
