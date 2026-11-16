@@ -1,22 +1,24 @@
 // Interactive layer: particle network, cursor glow, reveals, tilt, magnetic buttons, counters, typing.
 (() => {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const cn = navigator.connection || {}, small = innerWidth < 760, weak = cn.saveData || /2g/.test(cn.effectiveType || '') || (navigator.hardwareConcurrency || 8) <= 4;
+  const dpr = Math.min(devicePixelRatio || 1, small ? 1.5 : 2);
   // particle network that reacts to the mouse
   const c = document.getElementById('bg'); const x = c && c.getContext('2d');
   let W, H, pts = [], m = { x: -999, y: -999 };
-  function size() { if (!c) return; W = c.width = innerWidth * devicePixelRatio; H = c.height = innerHeight * devicePixelRatio; const n = Math.min(110, Math.floor(innerWidth / 14)); pts = Array.from({ length: n }, () => ({ x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .35 * devicePixelRatio, vy: (Math.random() - .5) * .35 * devicePixelRatio })); }
+  function size() { if (!c) return; W = c.width = innerWidth * dpr; H = c.height = innerHeight * dpr; const n = Math.min(small || weak ? 38 : 110, Math.floor(innerWidth / (small ? 22 : 14))); pts = Array.from({ length: n }, () => ({ x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .35 * dpr, vy: (Math.random() - .5) * .35 * dpr })); }
   function draw() {
-    if (!x) return; x.clearRect(0, 0, W, H); const L = 140 * devicePixelRatio;
+    if (!x) return; x.clearRect(0, 0, W, H); const L = 140 * dpr;
     for (const p of pts) { p.x += p.vx; p.y += p.vy; if (p.x < 0 || p.x > W) p.vx *= -1; if (p.y < 0 || p.y > H) p.vy *= -1;
-      const dx = p.x - m.x, dy = p.y - m.y, d = Math.hypot(dx, dy); if (d < 160 * devicePixelRatio) { p.x += dx / d * 1.2; p.y += dy / d * 1.2; }
-      x.fillStyle = 'rgba(180,190,255,.55)'; x.beginPath(); x.arc(p.x, p.y, 1.4 * devicePixelRatio, 0, 7); x.fill(); }
+      const dx = p.x - m.x, dy = p.y - m.y, d = Math.hypot(dx, dy); if (d < 160 * dpr) { p.x += dx / d * 1.2; p.y += dy / d * 1.2; }
+      x.fillStyle = 'rgba(180,190,255,.55)'; x.beginPath(); x.arc(p.x, p.y, 1.4 * dpr, 0, 7); x.fill(); }
     for (let i = 0; i < pts.length; i++) for (let j = i + 1; j < pts.length; j++) { const a = pts[i], b = pts[j], d = Math.hypot(a.x - b.x, a.y - b.y);
-      if (d < L) { x.strokeStyle = `rgba(124,92,255,${(1 - d / L) * .35})`; x.lineWidth = devicePixelRatio * .8; x.beginPath(); x.moveTo(a.x, a.y); x.lineTo(b.x, b.y); x.stroke(); } }
-    requestAnimationFrame(draw);
+      if (d < L) { x.strokeStyle = `rgba(124,92,255,${(1 - d / L) * .35})`; x.lineWidth = dpr * .8; x.beginPath(); x.moveTo(a.x, a.y); x.lineTo(b.x, b.y); x.stroke(); } }
+    if (!document.hidden) requestAnimationFrame(draw); else document.addEventListener('visibilitychange', () => requestAnimationFrame(draw), { once: true });
   }
-  if (c && !reduce) { size(); draw(); addEventListener('resize', size); }
+  if (c && !reduce) { size(); draw(); let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(size, 200); }); } else if (c) c.style.display = 'none';
   const glow = document.querySelector('.glow');
-  addEventListener('pointermove', (e) => { m.x = e.clientX * devicePixelRatio; m.y = e.clientY * devicePixelRatio; if (glow) { glow.style.left = e.clientX + 'px'; glow.style.top = e.clientY + 'px'; } });
+  addEventListener('pointermove', (e) => { m.x = e.clientX * dpr; m.y = e.clientY * dpr; if (glow) { glow.style.left = e.clientX + 'px'; glow.style.top = e.clientY + 'px'; } });
   // reveal on scroll
   const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .12 });
   document.querySelectorAll('.reveal').forEach((el) => io.observe(el));

@@ -1,3 +1,5 @@
+import os, shutil
+shutil.rmtree('dist',ignore_errors=True)
 import hashlib as _h
 ASSETV=_h.md5(open('styles.css','rb').read()+open('app.js','rb').read()).hexdigest()[:8]
 SC='https://socialcord.chaloone.com/'
@@ -33,7 +35,8 @@ SERVICES=[('🌐','Website development','Fast, beautiful, SEO-ready websites for
 ('⚡','Automation & workflows','Connect your apps and remove repeated manual work: reports, reminders, sync and notifications.'),
 ('☁️','Hosting, care & growth','Deployment, domains, speed, security updates, analytics and SEO, so your product keeps getting better.'),
 ('✨','And many more','Have a different tech idea? If it can be built, I can help you plan it, build it and run it. Just ask.')]
-svc=''.join(f'<div class="card reveal d{i%3}"><span class="num">{i+1:02d}</span><div class="ic">{a}</div><h3>{b}</h3><p>{c}</p></div>' for i,(a,b,c) in enumerate(SERVICES))
+from services_data import S as SD
+svc=''.join((f'<a class="card reveal d{i%3}" href="/services/{SD[b]["slug"]}">' if b in SD else f'<div class="card reveal d{i%3}">')+f'<span class="num">{i+1:02d}</span><div class="ic">{a}</div><h3>{b}</h3><p>{c}</p>'+('<div class="go">Learn more <b>→</b></div></a>' if b in SD else '</div>') for i,(a,b,c) in enumerate(SERVICES))
 PRODS=[('chalo-one','Chalo One','🧭','Super-app · Web','live','Food, groceries, rides and stays in one app, with a wallet, rewards and a smart assistant that compares options for you.'),
 ('sanatan-sadhak','Sanatan Sadhak','🪔','Mobile app · Android','soon','A calm companion for daily sadhana: mantra counter, sankalpa, Panchang, temples, Vedic library and a gentle guide.'),
 ('socialcord-notifier','SocialCord Notifier','🔔','Discord bot','live','Instant Discord alerts when your Instagram or Facebook posts a reel, post or video, with the right roles pinged.'),
@@ -122,6 +125,19 @@ P['contact.html']='<!doctype html><meta http-equiv="refresh" content="0;url=/#co
 import json as _j
 BASE='https://k-tech.chaloone.com'
 ORG={"@type":"Organization","@id":BASE+"/#org","name":"K. Tech Services","alternateName":["K Tech Services","KTech Services","K-Tech Services Rajasthan"],"url":BASE+"/","logo":{"@type":"ImageObject","url":BASE+"/img/logo-512.png","width":512,"height":512},"image":BASE+"/img/logo-512.png","email":"support@chaloone.com","founder":{"@type":"Person","name":"Kunal","jobTitle":"Founder & Developer"},"address":{"@type":"PostalAddress","addressRegion":"Rajasthan","addressCountry":"IN"},"areaServed":"IN","description":"K. Tech Services is an Indian software studio by Kunal that builds websites, web apps, mobile apps, AI agents, chatbots and Discord bots, and runs its own products: Chalo One, Sanatan Sadhak, SocialCord Notifier and Community Manager.","knowsAbout":["Website development","Web app development","Mobile app development","UI/UX design","AI agents","Chatbots","Discord bots","Automation"],"hasOfferCatalog":{"@type":"OfferCatalog","name":"Services","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":n}} for n in ["Website development","Web app development","Mobile app development","UI/UX design","E-commerce and booking systems","APIs and backend","AI agents","Chatbots and assistants","Discord bot development","Automation and workflows","Hosting, care and growth"]]}}
+
+for _t,_d in SD.items():
+    _ic=next(a for a,b,c in SERVICES if b==_t)
+    _g=''.join(f'<div class="card reveal d{i%3}"><div class="ic">{a}</div><h3>{b}</h3><p>{c}</p></div>' for i,(a,b,c) in enumerate(_d['gets']))
+    _f=''.join(f'<details class="faq reveal"><summary>{q}</summary><p>{a}</p></details>' for q,a in _d['faq'])
+    _o=''.join(f'<a class="chipl" href="/services/{v["slug"]}">{k}</a>' for k,v in SD.items() if k!=_t)
+    P[f'services/{_d["slug"]}.html']=page(f'{_d["title"]} · K. Tech Services by Kunal Pareek',(_d['intro'][0])[:155],f'''
+<section class="phero"><div class="wrap"><div class="chip reveal"><b></b>Service</div><h1 class="reveal d1"><span style="font-size:.8em">{_ic}</span> <span class="grad">{_d["title"]}</span></h1>{''.join(f'<p class="lead reveal d2">{p}</p>' for p in _d['intro'])}
+<div class="row reveal d3"><a class="btn primary" href="/#contact">Get a free quote →</a><a class="btn ghost" href="/#work">See my products</a></div></div></section>
+<section><div class="wrap"><div class="kicker reveal">What you get</div><h2 class="title reveal d1">Everything you need, done properly.</h2><div class="grid g4">{_g}</div></div></section>
+<section><div class="wrap"><div class="kicker reveal">FAQ</div><h2 class="title reveal d1">Common questions</h2><div class="faqs">{_f}</div></div></section>
+<section><div class="wrap"><div class="cta reveal"><h2>Ready to start? <span class="grad">Let’s talk.</span></h2><p class="sub" style="margin:16px auto 0">Tell me about your project and I’ll reply within one working day.</p><div class="row" style="justify-content:center;margin-top:24px"><a class="btn primary" href="/#contact">Start a project →</a></div>
+<div class="chips" style="margin-top:34px">{_o}</div></div></div></section>''')
 SITE={"@type":"WebSite","@id":BASE+"/#site","url":BASE+"/","name":"K. Tech Services","publisher":{"@id":BASE+"/#org"},"inLanguage":"en-IN"}
 APPS={'chalo-one':('Chalo One','https://app.chaloone.com/','TravelApplication'),'sanatan-sadhak':('Sanatan Sadhak','https://sanatan-sadhak.chaloone.com/','LifestyleApplication'),'socialcord-notifier':('SocialCord Notifier','https://socialcord.chaloone.com/','SocialNetworkingApplication'),'community-manager':('Community Manager','https://community-manager.chaloone.com/','BusinessApplication')}
 for k,v in P.items():
@@ -143,5 +159,10 @@ for k,v in P.items():
         import re as _re
         v=_re.sub(r'<script type="application/ld\+json">.*?</script>','<script type="application/ld+json">'+_j.dumps({"@context":"https://schema.org","@graph":graph},ensure_ascii=False)+'</script>',v,count=1,flags=_re.S)
         v=v.replace('</head>',extra+'</head>',1)
-    open(k,'w').write(v)
-print(len(P))
+    out=os.path.join('dist',k); os.makedirs(os.path.dirname(out),exist_ok=True); open(out,'w').write(v)
+for f in ['_headers','app.js','styles.css','favicon.ico','favicon.svg','robots.txt','site.webmanifest']: shutil.copy(f,'dist/'+f)
+for d in ['img','socialcord-notifier','community-manager']: shutil.copytree(d,'dist/'+d,dirs_exist_ok=True)
+_urls=['']+[k[:-5] for k in sorted(P) if k not in('index.html','404.html','thanks.html','contact.html')]+['socialcord-notifier/privacy','socialcord-notifier/terms','community-manager/privacy','community-manager/terms']
+_today=__import__('datetime').date.today().isoformat()
+open('dist/sitemap.xml','w').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'<url><loc>{BASE}/{u}</loc><lastmod>{_today}</lastmod></url>\n' for u in _urls)+'</urlset>\n')
+print(len(P),'pages ->',len(_urls),'sitemap urls')
