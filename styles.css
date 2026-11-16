@@ -138,3 +138,7 @@ a.card{display:block;color:inherit;text-decoration:none}a.card .go{margin-top:16
 .faq summary{cursor:pointer;font-weight:600;font-size:17px;list-style:none;display:flex;justify-content:space-between;gap:12px}.faq summary:after{content:"+";color:#22d3ee;font-size:22px;line-height:1;transition:transform .3s}.faq[open] summary:after{transform:rotate(45deg)}
 .faq p{color:var(--muted);line-height:1.65;margin:12px 0 0}
 .chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}.chipl{padding:8px 14px;border-radius:999px;border:1px solid var(--line);color:var(--muted);font-size:14px;text-decoration:none;transition:.25s}.chipl:hover{color:#fff;border-color:#8b5cf6;background:rgba(124,92,255,.12)}
+.shot{display:block;margin-top:40px;border-radius:20px;overflow:hidden;border:1px solid var(--line);background:#0b0d1e;box-shadow:0 40px 90px -30px rgba(124,92,255,.5);transition:transform .4s,box-shadow .4s}
+.shot:hover{transform:translateY(-6px) scale(1.01);box-shadow:0 50px 110px -30px rgba(236,72,153,.5)}.shot img{display:block;width:100%;height:auto}
+.shot .bar{display:flex;align-items:center;gap:7px;padding:11px 14px;background:rgba(255,255,255,.04);border-bottom:1px solid var(--line)}.shot .bar i{width:10px;height:10px;border-radius:50%;background:#ff5f57}.shot .bar i:nth-child(2){background:#febc2e}.shot .bar i:nth-child(3){background:#28c840}
+.shot .bar em{margin-left:12px;font-style:normal;font-size:13px;color:var(--muted);background:rgba(0,0,0,.3);padding:3px 12px;border-radius:8px}
