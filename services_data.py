@@ -56,3 +56,6 @@ S = {
  gets=[('☁️','Hosting & domains','Fast, reliable hosting, SSL and business email.'),('🔒','Security updates','Regular updates and backups.'),('📈','SEO & analytics','Search Console, analytics and monthly improvements.'),('🧑‍🔧','Support','Fixes and small changes when you need them.')],
  faq=[('Can you take over my existing website?','Yes. I review it, fix issues and take care of it going forward.'),('Do you offer monthly plans?','Yes, simple monthly care plans based on what you need.'),('Can you improve my Google ranking?','Yes, through technical SEO, speed, content guidance and Google Business Profile setup.')]),
 }
+
+# Indicative "starting from" prices (edit freely)
+PRICE={'Website development': '₹9,999', 'Web app development': '₹49,999', 'Mobile app development': '₹59,999', 'UI / UX design': '₹14,999', 'E-commerce & booking': '₹24,999', 'APIs & backend': '₹19,999', 'AI agents': '₹29,999', 'Chatbots & assistants': '₹14,999', 'Discord bots': '₹4,999', 'Automation & workflows': '₹7,999', 'Hosting, care & growth': '₹1,499/month'}

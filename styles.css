@@ -142,3 +142,5 @@ a.card{display:block;color:inherit;text-decoration:none}a.card .go{margin-top:16
 .shot:hover{transform:translateY(-6px) scale(1.01);box-shadow:0 50px 110px -30px rgba(236,72,153,.5)}.shot img{display:block;width:100%;height:auto}
 .shot .bar{display:flex;align-items:center;gap:7px;padding:11px 14px;background:rgba(255,255,255,.04);border-bottom:1px solid var(--line)}.shot .bar i{width:10px;height:10px;border-radius:50%;background:#ff5f57}.shot .bar i:nth-child(2){background:#febc2e}.shot .bar i:nth-child(3){background:#28c840}
 .shot .bar em{margin-left:12px;font-style:normal;font-size:13px;color:var(--muted);background:rgba(0,0,0,.3);padding:3px 12px;border-radius:8px}
+.card .price{margin-top:14px;font-size:14px;color:var(--muted)}.card .price b{color:#fff;font-size:16px}
+.pricetag{display:inline-flex;flex-direction:column;gap:4px;margin:6px 0 22px;padding:14px 20px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.03)}.pricetag b{font-size:28px}.pricetag span{font-size:13px;color:var(--muted)}

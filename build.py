@@ -35,8 +35,8 @@ SERVICES=[('🌐','Website development','Fast, beautiful, SEO-ready websites for
 ('⚡','Automation & workflows','Connect your apps and remove repeated manual work: reports, reminders, sync and notifications.'),
 ('☁️','Hosting, care & growth','Deployment, domains, speed, security updates, analytics and SEO, so your product keeps getting better.'),
 ('✨','And many more','Have a different tech idea? If it can be built, I can help you plan it, build it and run it. Just ask.')]
-from services_data import S as SD
-svc=''.join((f'<a class="card reveal d{i%3}" href="/services/{SD[b]["slug"]}">' if b in SD else f'<div class="card reveal d{i%3}">')+f'<span class="num">{i+1:02d}</span><div class="ic">{a}</div><h3>{b}</h3><p>{c}</p>'+('<div class="go">Learn more <b>→</b></div></a>' if b in SD else '</div>') for i,(a,b,c) in enumerate(SERVICES))
+from services_data import S as SD, PRICE
+svc=''.join((f'<a class="card reveal d{i%3}" href="/services/{SD[b]["slug"]}">' if b in SD else f'<div class="card reveal d{i%3}">')+f'<span class="num">{i+1:02d}</span><div class="ic">{a}</div><h3>{b}</h3><p>{c}</p>'+(f'<div class="price">From <b>{PRICE[b]}</b></div>' if b in PRICE else '')+('<div class="go">Learn more <b>→</b></div></a>' if b in SD else '</div>') for i,(a,b,c) in enumerate(SERVICES))
 PRODS=[('chalo-one','Chalo One','🧭','Super-app · Web','live','Food, groceries, rides and stays in one app, with a wallet, rewards and a smart assistant that compares options for you.'),
 ('sanatan-sadhak','Sanatan Sadhak','🪔','Mobile app · Android','soon','A calm companion for daily sadhana: mantra counter, sankalpa, Panchang, temples, Vedic library and a gentle guide.'),
 ('socialcord-notifier','SocialCord Notifier','🔔','Discord bot','live','Instant Discord alerts when your Instagram or Facebook posts a reel, post or video, with the right roles pinged.'),
@@ -133,7 +133,7 @@ for _t,_d in SD.items():
     _o=''.join(f'<a class="chipl" href="/services/{v["slug"]}">{k}</a>' for k,v in SD.items() if k!=_t)
     P[f'services/{_d["slug"]}.html']=page(f'{_d["title"]} · K. Tech Services by Kunal Pareek',(_d['intro'][0])[:155],f'''
 <section class="phero"><div class="wrap"><div class="chip reveal"><b></b>Service</div><h1 class="reveal d1"><span style="font-size:.8em">{_ic}</span> <span class="grad">{_d["title"]}</span></h1>{''.join(f'<p class="lead reveal d2">{p}</p>' for p in _d['intro'])}
-<div class="row reveal d3"><a class="btn primary" href="/#contact">Get a free quote →</a><a class="btn ghost" href="/#work">See my products</a></div></div></section>
+<div class="pricetag reveal d3">Starting from <b class="grad">{PRICE.get(_t,'')}</b><span>Final price depends on scope. Free, no-obligation quote.</span></div><div class="row reveal d3"><a class="btn primary" href="/#contact">Get a free quote →</a><a class="btn ghost" href="/#work">See my products</a></div></div></section>
 <section><div class="wrap"><div class="kicker reveal">What you get</div><h2 class="title reveal d1">Everything you need, done properly.</h2><div class="grid g4">{_g}</div></div></section>
 <section><div class="wrap"><div class="kicker reveal">FAQ</div><h2 class="title reveal d1">Common questions</h2><div class="faqs">{_f}</div></div></section>
 <section><div class="wrap"><div class="cta reveal"><h2>Ready to start? <span class="grad">Let’s talk.</span></h2><p class="sub" style="margin:16px auto 0">Tell me about your project and I’ll reply within one working day.</p><div class="row" style="justify-content:center;margin-top:24px"><a class="btn primary" href="/#contact">Start a project →</a></div>
