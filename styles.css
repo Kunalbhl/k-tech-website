@@ -123,8 +123,6 @@ footer h4{color:#fff;margin:0 0 14px}footer ul{list-style:none;padding:0;margin:
 .brandrow{display:flex;align-items:center;gap:18px;margin-bottom:18px}.brandrow .chip{margin:0}
 .plogo-wrap{position:relative;display:inline-block;flex:none}.plogo-wrap .plogo.big{margin:0}
 .plogo-wrap .flame{display:none}
-.plogo-wrap.sanatan-sadhak .flame{display:block;position:absolute;left:50%;top:21%;width:16%;height:16%;transform:translate(-50%,-50%);border-radius:50% 50% 45% 45%;background:radial-gradient(circle at 50% 70%,#fff8d6 0,#ffd166 25%,#ff8c1a 50%,rgba(255,80,0,0) 72%);mix-blend-mode:screen;filter:blur(1px);animation:flick 1.1s ease-in-out infinite alternate;pointer-events:none}
-.plogo-wrap.sanatan-sadhak .flame:after{content:"";position:absolute;inset:-120%;border-radius:50%;background:radial-gradient(circle,rgba(255,170,60,.55),rgba(255,120,0,.18) 40%,transparent 65%);animation:glowp 1.6s ease-in-out infinite alternate}
 @keyframes flick{0%{transform:translate(-50%,-50%) scale(1,1) rotate(-3deg);opacity:.85}35%{transform:translate(-50%,-58%) scale(.88,1.25) rotate(2deg);opacity:1}70%{transform:translate(-52%,-54%) scale(1.06,1.1) rotate(-1deg)}100%{transform:translate(-48%,-60%) scale(.92,1.3) rotate(3deg);opacity:.95}}
 @keyframes glowp{to{transform:scale(1.25);opacity:.7}}
 .mock .bub.typing:after{content:"";display:inline-block;width:2px;height:1em;margin-left:2px;vertical-align:-2px;background:#22d3ee;animation:blink .8s steps(1) infinite}
@@ -158,3 +156,19 @@ a.card{display:block;color:inherit;text-decoration:none}a.card .go{margin-top:16
 .gal.phones .track img{border-radius:0;filter:drop-shadow(0 24px 40px rgba(0,0,0,.6))}
 @media(max-width:900px){.gal.phones .track img{flex-basis:50%;width:50%}}@media(max-width:560px){.gal.phones .track img{flex-basis:100%;width:100%;padding:0 18%}}
 .gal.phones img{clip-path:inset(0 round 34px)}
+.plogo.hero-ss{width:150px;height:auto;border-radius:26px;display:block;object-fit:cover;box-shadow:0 18px 50px rgba(255,120,20,.25),0 0 0 1px rgba(255,170,80,.25)}
+.plogo-wrap .fire{position:absolute;left:49.6%;top:24.2%;width:15%;height:20%;transform:translate(-50%,-100%);pointer-events:none;filter:url(#fireWarp);mix-blend-mode:screen}
+.fire i{position:absolute;left:50%;bottom:0;border-radius:50% 50% 50% 50%/62% 62% 38% 38%;transform-origin:50% 100%;translate:-50% 0}
+.fire .f1{width:100%;height:100%;background:radial-gradient(ellipse at 50% 85%,rgba(255,90,0,.95),rgba(220,30,0,.55) 45%,transparent 72%);animation:fl1 .9s ease-in-out infinite alternate}
+.fire .f2{width:72%;height:82%;background:radial-gradient(ellipse at 50% 85%,#ffb000,rgba(255,110,0,.85) 50%,transparent 75%);animation:fl2 .7s ease-in-out infinite alternate}
+.fire .f3{width:44%;height:58%;background:radial-gradient(ellipse at 50% 80%,#fff8e1,#ffe066 40%,rgba(255,170,0,.6) 70%,transparent 80%);animation:fl3 .5s ease-in-out infinite alternate}
+.fire .f4{width:26%;height:30%;bottom:2%;background:radial-gradient(circle at 50% 70%,rgba(120,180,255,.75),transparent 70%);animation:fl3 .6s ease-in-out infinite alternate}
+.fire b{position:absolute;left:50%;bottom:30%;width:3px;height:3px;border-radius:50%;background:#ffc04d;box-shadow:0 0 6px 2px rgba(255,140,0,.9);opacity:0;animation:ember 1.8s linear infinite}
+.fire b:nth-child(6){animation-delay:.35s;--dx:-8px}.fire b:nth-child(7){animation-delay:.8s;--dx:7px}.fire b:nth-child(8){animation-delay:1.2s;--dx:-3px}.fire b:nth-child(9){animation-delay:1.5s;--dx:10px}
+@keyframes fl1{0%{transform:scale(1,1) skewX(-3deg)}50%{transform:scale(.92,1.12) skewX(2deg)}100%{transform:scale(1.05,.95) skewX(4deg)}}
+@keyframes fl2{0%{transform:scale(1,1) skewX(3deg)}50%{transform:scale(.9,1.15) skewX(-3deg)}100%{transform:scale(1.04,1.02) skewX(-1deg)}}
+@keyframes fl3{0%{transform:scale(1,1)}100%{transform:scale(.88,1.14)}}
+@keyframes ember{0%{opacity:0;transform:translate(0,0) scale(1)}15%{opacity:1}100%{opacity:0;transform:translate(var(--dx,4px),-60px) scale(.3)}}
+.plogo-wrap.sanatan-sadhak::after{content:"";position:absolute;left:49.6%;top:16%;width:45%;height:30%;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(255,140,30,.45),transparent 65%);animation:ssglow 1.4s ease-in-out infinite alternate;pointer-events:none;mix-blend-mode:screen}
+@keyframes ssglow{from{opacity:.55;transform:translate(-50%,-50%) scale(.9)}to{opacity:1;transform:translate(-50%,-50%) scale(1.15)}}
+@media(max-width:600px){.plogo.hero-ss{width:118px}}
